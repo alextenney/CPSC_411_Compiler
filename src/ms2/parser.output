@@ -1,0 +1,1843 @@
+Terminals unused in grammar
+
+    "-"
+
+
+State 59 conflicts: 1 shift/reduce
+State 126 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: start $end
+
+    1 start: ε
+    2      | globaldeclarations
+
+    3 literal: "number"
+    4        | "string"
+    5        | "true"
+    6        | "false"
+
+    7 type: "boolean"
+    8     | "int"
+
+    9 globaldeclarations: globaldeclaration
+   10                   | globaldeclarations globaldeclaration
+
+   11 globaldeclaration: variabledeclaration
+   12                  | functiondeclaration
+   13                  | mainfunctiondeclaration
+
+   14 variabledeclaration: type identifier ";"
+
+   15 identifier: "identifier"
+
+   16 functiondeclaration: functionheader block
+
+   17 functionheader: type functiondeclarator
+   18               | "void" functiondeclarator
+
+   19 functiondeclarator: identifier "(" formalparameterlist ")"
+   20                   | identifier "(" ")"
+
+   21 formalparameterlist: formalparameter
+   22                    | formalparameterlist "," formalparameter
+
+   23 formalparameter: type identifier
+
+   24 mainfunctiondeclaration: mainfunctiondeclarator block
+
+   25 mainfunctiondeclarator: identifier "(" ")"
+
+   26 block: "{" blockstatements "}"
+   27      | "{" "}"
+
+   28 blockstatements: blockstatement
+   29                | blockstatements blockstatement
+
+   30 blockstatement: variabledeclaration
+   31               | statement
+
+   32 statement: block
+   33          | ";"
+   34          | statementexpression ";"
+   35          | "break" ";"
+   36          | "return" expression ";"
+   37          | "return" ";"
+   38          | "if" "(" expression ")" statement
+   39          | "if" "(" expression ")" statement "else" statement
+   40          | "while" "(" expression ")" statement
+
+   41 statementexpression: assignment
+   42                    | functioninvocation
+
+   43 primary: literal
+   44        | "(" expression ")"
+   45        | functioninvocation
+
+   46 argumentlist: expression
+   47             | argumentlist "," expression
+
+   48 functioninvocation: identifier "(" argumentlist ")"
+   49                   | identifier "(" ")"
+
+   50 postfixexpression: primary
+   51                  | identifier
+
+   52 unaryexpression: '-' unaryexpression
+   53                | "!" unaryexpression
+   54                | postfixexpression
+
+   55 multiplicativeexpression: unaryexpression
+   56                         | multiplicativeexpression "*" unaryexpression
+   57                         | multiplicativeexpression "/" unaryexpression
+   58                         | multiplicativeexpression "%" unaryexpression
+
+   59 additiveexpression: multiplicativeexpression
+   60                   | additiveexpression "+" multiplicativeexpression
+   61                   | additiveexpression '-' multiplicativeexpression
+
+   62 relationalexpression: additiveexpression
+   63                     | relationalexpression "<" additiveexpression
+   64                     | relationalexpression ">" additiveexpression
+   65                     | relationalexpression ">+" additiveexpression
+   66                     | relationalexpression "<=" additiveexpression
+
+   67 equalityexpression: relationalexpression
+   68                   | equalityexpression "=" relationalexpression
+   69                   | equalityexpression "!=" relationalexpression
+
+   70 conditionalandexpression: equalityexpression
+   71                         | conditionalandexpression "&&" equalityexpression
+
+   72 conditionalorexpression: conditionalandexpression
+   73                        | conditionalorexpression "||" conditionalandexpression
+
+   74 assignmentexpression: conditionalorexpression
+   75                     | assignment
+
+   76 assignment: identifier "=" assignmentexpression
+
+   77 expression: assignmentexpression
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '-' (45) 52 61
+    error (256)
+    "+" <astval> (258) 60
+    "-" <astval> (259)
+    "/" <astval> (260) 57
+    "*" <astval> (261) 56
+    "=" <astval> (262) 68 76
+    "%" <astval> (263) 58
+    "(" <astval> (264) 19 20 25 38 39 40 44 48 49
+    ")" <astval> (265) 19 20 25 38 39 40 44 48 49
+    ">" <astval> (266) 64
+    "<" <astval> (267) 63
+    "<=" <astval> (268) 66
+    ">+" <astval> (269) 65
+    "{" <astval> (270) 26 27
+    "}" <astval> (271) 26 27
+    ";" <sval> (272) 14 33 34 35 36 37
+    "," <astval> (273) 22 47
+    "!" <astval> (274) 53
+    "!=" <astval> (275) 69
+    "&&" <astval> (276) 71
+    "||" <astval> (277) 73
+    "if" <astval> (278) 38 39
+    "while" <astval> (279) 40
+    "else" <astval> (280) 39
+    "return" <sval> (281) 36 37
+    "break" <astval> (282) 35
+    "int" <ival> (283) 8
+    "boolean" <sval> (284) 7
+    "void" <sval> (285) 18
+    "true" <sval> (286) 5
+    "false" <sval> (287) 6
+    "string" <astval> (288) 4
+    "identifier" <sval> (289) 15
+    "number" <ival> (290) 3
+
+
+Nonterminals, with rules where they appear
+
+    $accept (37)
+        on left: 0
+    start (38)
+        on left: 1 2
+        on right: 0
+    literal <astval> (39)
+        on left: 3 4 5 6
+        on right: 43
+    type <astval> (40)
+        on left: 7 8
+        on right: 14 17 23
+    globaldeclarations <astval> (41)
+        on left: 9 10
+        on right: 2 10
+    globaldeclaration <astval> (42)
+        on left: 11 12 13
+        on right: 9 10
+    variabledeclaration <astval> (43)
+        on left: 14
+        on right: 11 30
+    identifier <astval> (44)
+        on left: 15
+        on right: 14 19 20 23 25 48 49 51 76
+    functiondeclaration <astval> (45)
+        on left: 16
+        on right: 12
+    functionheader <astgroupval> (46)
+        on left: 17 18
+        on right: 16
+    functiondeclarator <astgroupval> (47)
+        on left: 19 20
+        on right: 17 18
+    formalparameterlist <astval> (48)
+        on left: 21 22
+        on right: 19 22
+    formalparameter <astval> (49)
+        on left: 23
+        on right: 21 22
+    mainfunctiondeclaration <astval> (50)
+        on left: 24
+        on right: 13
+    mainfunctiondeclarator <astgroupval> (51)
+        on left: 25
+        on right: 24
+    block <astval> (52)
+        on left: 26 27
+        on right: 16 24 32
+    blockstatements <astgroupval> (53)
+        on left: 28 29
+        on right: 26 29
+    blockstatement <astval> (54)
+        on left: 30 31
+        on right: 28 29
+    statement <astval> (55)
+        on left: 32 33 34 35 36 37 38 39 40
+        on right: 31 38 39 40
+    statementexpression <astval> (56)
+        on left: 41 42
+        on right: 34
+    primary <astval> (57)
+        on left: 43 44 45
+        on right: 50
+    argumentlist <astval> (58)
+        on left: 46 47
+        on right: 47 48
+    functioninvocation <astval> (59)
+        on left: 48 49
+        on right: 42 45
+    postfixexpression <astval> (60)
+        on left: 50 51
+        on right: 54
+    unaryexpression <astval> (61)
+        on left: 52 53 54
+        on right: 52 53 55 56 57 58
+    multiplicativeexpression <astval> (62)
+        on left: 55 56 57 58
+        on right: 56 57 58 59 60 61
+    additiveexpression <astval> (63)
+        on left: 59 60 61
+        on right: 60 61 62 63 64 65 66
+    relationalexpression <astval> (64)
+        on left: 62 63 64 65 66
+        on right: 63 64 65 66 67 68 69
+    equalityexpression <astval> (65)
+        on left: 67 68 69
+        on right: 68 69 70 71
+    conditionalandexpression <astval> (66)
+        on left: 70 71
+        on right: 71 72 73
+    conditionalorexpression <astval> (67)
+        on left: 72 73
+        on right: 73 74
+    assignmentexpression <astval> (68)
+        on left: 74 75
+        on right: 76 77
+    assignment <astval> (69)
+        on left: 76
+        on right: 41 75
+    expression <astval> (70)
+        on left: 77
+        on right: 36 38 39 40 44 46 47
+
+
+State 0
+
+    0 $accept: • start $end
+
+    "int"         shift, and go to state 1
+    "boolean"     shift, and go to state 2
+    "void"        shift, and go to state 3
+    "identifier"  shift, and go to state 4
+
+    $default  reduce using rule 1 (start)
+
+    start                    go to state 5
+    type                     go to state 6
+    globaldeclarations       go to state 7
+    globaldeclaration        go to state 8
+    variabledeclaration      go to state 9
+    identifier               go to state 10
+    functiondeclaration      go to state 11
+    functionheader           go to state 12
+    mainfunctiondeclaration  go to state 13
+    mainfunctiondeclarator   go to state 14
+
+
+State 1
+
+    8 type: "int" •
+
+    $default  reduce using rule 8 (type)
+
+
+State 2
+
+    7 type: "boolean" •
+
+    $default  reduce using rule 7 (type)
+
+
+State 3
+
+   18 functionheader: "void" • functiondeclarator
+
+    "identifier"  shift, and go to state 4
+
+    identifier          go to state 15
+    functiondeclarator  go to state 16
+
+
+State 4
+
+   15 identifier: "identifier" •
+
+    $default  reduce using rule 15 (identifier)
+
+
+State 5
+
+    0 $accept: start • $end
+
+    $end  shift, and go to state 17
+
+
+State 6
+
+   14 variabledeclaration: type • identifier ";"
+   17 functionheader: type • functiondeclarator
+
+    "identifier"  shift, and go to state 4
+
+    identifier          go to state 18
+    functiondeclarator  go to state 19
+
+
+State 7
+
+    2 start: globaldeclarations •
+   10 globaldeclarations: globaldeclarations • globaldeclaration
+
+    "int"         shift, and go to state 1
+    "boolean"     shift, and go to state 2
+    "void"        shift, and go to state 3
+    "identifier"  shift, and go to state 4
+
+    $default  reduce using rule 2 (start)
+
+    type                     go to state 6
+    globaldeclaration        go to state 20
+    variabledeclaration      go to state 9
+    identifier               go to state 10
+    functiondeclaration      go to state 11
+    functionheader           go to state 12
+    mainfunctiondeclaration  go to state 13
+    mainfunctiondeclarator   go to state 14
+
+
+State 8
+
+    9 globaldeclarations: globaldeclaration •
+
+    $default  reduce using rule 9 (globaldeclarations)
+
+
+State 9
+
+   11 globaldeclaration: variabledeclaration •
+
+    $default  reduce using rule 11 (globaldeclaration)
+
+
+State 10
+
+   25 mainfunctiondeclarator: identifier • "(" ")"
+
+    "("  shift, and go to state 21
+
+
+State 11
+
+   12 globaldeclaration: functiondeclaration •
+
+    $default  reduce using rule 12 (globaldeclaration)
+
+
+State 12
+
+   16 functiondeclaration: functionheader • block
+
+    "{"  shift, and go to state 22
+
+    block  go to state 23
+
+
+State 13
+
+   13 globaldeclaration: mainfunctiondeclaration •
+
+    $default  reduce using rule 13 (globaldeclaration)
+
+
+State 14
+
+   24 mainfunctiondeclaration: mainfunctiondeclarator • block
+
+    "{"  shift, and go to state 22
+
+    block  go to state 24
+
+
+State 15
+
+   19 functiondeclarator: identifier • "(" formalparameterlist ")"
+   20                   | identifier • "(" ")"
+
+    "("  shift, and go to state 25
+
+
+State 16
+
+   18 functionheader: "void" functiondeclarator •
+
+    $default  reduce using rule 18 (functionheader)
+
+
+State 17
+
+    0 $accept: start $end •
+
+    $default  accept
+
+
+State 18
+
+   14 variabledeclaration: type identifier • ";"
+   19 functiondeclarator: identifier • "(" formalparameterlist ")"
+   20                   | identifier • "(" ")"
+
+    "("  shift, and go to state 25
+    ";"  shift, and go to state 26
+
+
+State 19
+
+   17 functionheader: type functiondeclarator •
+
+    $default  reduce using rule 17 (functionheader)
+
+
+State 20
+
+   10 globaldeclarations: globaldeclarations globaldeclaration •
+
+    $default  reduce using rule 10 (globaldeclarations)
+
+
+State 21
+
+   25 mainfunctiondeclarator: identifier "(" • ")"
+
+    ")"  shift, and go to state 27
+
+
+State 22
+
+   26 block: "{" • blockstatements "}"
+   27      | "{" • "}"
+
+    "{"           shift, and go to state 22
+    "}"           shift, and go to state 28
+    ";"           shift, and go to state 29
+    "if"          shift, and go to state 30
+    "while"       shift, and go to state 31
+    "return"      shift, and go to state 32
+    "break"       shift, and go to state 33
+    "int"         shift, and go to state 1
+    "boolean"     shift, and go to state 2
+    "identifier"  shift, and go to state 4
+
+    type                 go to state 34
+    variabledeclaration  go to state 35
+    identifier           go to state 36
+    block                go to state 37
+    blockstatements      go to state 38
+    blockstatement       go to state 39
+    statement            go to state 40
+    statementexpression  go to state 41
+    functioninvocation   go to state 42
+    assignment           go to state 43
+
+
+State 23
+
+   16 functiondeclaration: functionheader block •
+
+    $default  reduce using rule 16 (functiondeclaration)
+
+
+State 24
+
+   24 mainfunctiondeclaration: mainfunctiondeclarator block •
+
+    $default  reduce using rule 24 (mainfunctiondeclaration)
+
+
+State 25
+
+   19 functiondeclarator: identifier "(" • formalparameterlist ")"
+   20                   | identifier "(" • ")"
+
+    ")"        shift, and go to state 44
+    "int"      shift, and go to state 1
+    "boolean"  shift, and go to state 2
+
+    type                 go to state 45
+    formalparameterlist  go to state 46
+    formalparameter      go to state 47
+
+
+State 26
+
+   14 variabledeclaration: type identifier ";" •
+
+    $default  reduce using rule 14 (variabledeclaration)
+
+
+State 27
+
+   25 mainfunctiondeclarator: identifier "(" ")" •
+
+    $default  reduce using rule 25 (mainfunctiondeclarator)
+
+
+State 28
+
+   27 block: "{" "}" •
+
+    $default  reduce using rule 27 (block)
+
+
+State 29
+
+   33 statement: ";" •
+
+    $default  reduce using rule 33 (statement)
+
+
+State 30
+
+   38 statement: "if" • "(" expression ")" statement
+   39          | "if" • "(" expression ")" statement "else" statement
+
+    "("  shift, and go to state 48
+
+
+State 31
+
+   40 statement: "while" • "(" expression ")" statement
+
+    "("  shift, and go to state 49
+
+
+State 32
+
+   36 statement: "return" • expression ";"
+   37          | "return" • ";"
+
+    "("           shift, and go to state 50
+    ";"           shift, and go to state 51
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 59
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 65
+    relationalexpression      go to state 66
+    equalityexpression        go to state 67
+    conditionalandexpression  go to state 68
+    conditionalorexpression   go to state 69
+    assignmentexpression      go to state 70
+    assignment                go to state 71
+    expression                go to state 72
+
+
+State 33
+
+   35 statement: "break" • ";"
+
+    ";"  shift, and go to state 73
+
+
+State 34
+
+   14 variabledeclaration: type • identifier ";"
+
+    "identifier"  shift, and go to state 4
+
+    identifier  go to state 74
+
+
+State 35
+
+   30 blockstatement: variabledeclaration •
+
+    $default  reduce using rule 30 (blockstatement)
+
+
+State 36
+
+   48 functioninvocation: identifier • "(" argumentlist ")"
+   49                   | identifier • "(" ")"
+   76 assignment: identifier • "=" assignmentexpression
+
+    "="  shift, and go to state 75
+    "("  shift, and go to state 76
+
+
+State 37
+
+   32 statement: block •
+
+    $default  reduce using rule 32 (statement)
+
+
+State 38
+
+   26 block: "{" blockstatements • "}"
+   29 blockstatements: blockstatements • blockstatement
+
+    "{"           shift, and go to state 22
+    "}"           shift, and go to state 77
+    ";"           shift, and go to state 29
+    "if"          shift, and go to state 30
+    "while"       shift, and go to state 31
+    "return"      shift, and go to state 32
+    "break"       shift, and go to state 33
+    "int"         shift, and go to state 1
+    "boolean"     shift, and go to state 2
+    "identifier"  shift, and go to state 4
+
+    type                 go to state 34
+    variabledeclaration  go to state 35
+    identifier           go to state 36
+    block                go to state 37
+    blockstatement       go to state 78
+    statement            go to state 40
+    statementexpression  go to state 41
+    functioninvocation   go to state 42
+    assignment           go to state 43
+
+
+State 39
+
+   28 blockstatements: blockstatement •
+
+    $default  reduce using rule 28 (blockstatements)
+
+
+State 40
+
+   31 blockstatement: statement •
+
+    $default  reduce using rule 31 (blockstatement)
+
+
+State 41
+
+   34 statement: statementexpression • ";"
+
+    ";"  shift, and go to state 79
+
+
+State 42
+
+   42 statementexpression: functioninvocation •
+
+    $default  reduce using rule 42 (statementexpression)
+
+
+State 43
+
+   41 statementexpression: assignment •
+
+    $default  reduce using rule 41 (statementexpression)
+
+
+State 44
+
+   20 functiondeclarator: identifier "(" ")" •
+
+    $default  reduce using rule 20 (functiondeclarator)
+
+
+State 45
+
+   23 formalparameter: type • identifier
+
+    "identifier"  shift, and go to state 4
+
+    identifier  go to state 80
+
+
+State 46
+
+   19 functiondeclarator: identifier "(" formalparameterlist • ")"
+   22 formalparameterlist: formalparameterlist • "," formalparameter
+
+    ")"  shift, and go to state 81
+    ","  shift, and go to state 82
+
+
+State 47
+
+   21 formalparameterlist: formalparameter •
+
+    $default  reduce using rule 21 (formalparameterlist)
+
+
+State 48
+
+   38 statement: "if" "(" • expression ")" statement
+   39          | "if" "(" • expression ")" statement "else" statement
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 59
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 65
+    relationalexpression      go to state 66
+    equalityexpression        go to state 67
+    conditionalandexpression  go to state 68
+    conditionalorexpression   go to state 69
+    assignmentexpression      go to state 70
+    assignment                go to state 71
+    expression                go to state 83
+
+
+State 49
+
+   40 statement: "while" "(" • expression ")" statement
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 59
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 65
+    relationalexpression      go to state 66
+    equalityexpression        go to state 67
+    conditionalandexpression  go to state 68
+    conditionalorexpression   go to state 69
+    assignmentexpression      go to state 70
+    assignment                go to state 71
+    expression                go to state 84
+
+
+State 50
+
+   44 primary: "(" • expression ")"
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 59
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 65
+    relationalexpression      go to state 66
+    equalityexpression        go to state 67
+    conditionalandexpression  go to state 68
+    conditionalorexpression   go to state 69
+    assignmentexpression      go to state 70
+    assignment                go to state 71
+    expression                go to state 85
+
+
+State 51
+
+   37 statement: "return" ";" •
+
+    $default  reduce using rule 37 (statement)
+
+
+State 52
+
+   53 unaryexpression: "!" • unaryexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal             go to state 58
+    identifier          go to state 86
+    primary             go to state 60
+    functioninvocation  go to state 61
+    postfixexpression   go to state 62
+    unaryexpression     go to state 87
+
+
+State 53
+
+    5 literal: "true" •
+
+    $default  reduce using rule 5 (literal)
+
+
+State 54
+
+    6 literal: "false" •
+
+    $default  reduce using rule 6 (literal)
+
+
+State 55
+
+    4 literal: "string" •
+
+    $default  reduce using rule 4 (literal)
+
+
+State 56
+
+    3 literal: "number" •
+
+    $default  reduce using rule 3 (literal)
+
+
+State 57
+
+   52 unaryexpression: '-' • unaryexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal             go to state 58
+    identifier          go to state 86
+    primary             go to state 60
+    functioninvocation  go to state 61
+    postfixexpression   go to state 62
+    unaryexpression     go to state 88
+
+
+State 58
+
+   43 primary: literal •
+
+    $default  reduce using rule 43 (primary)
+
+
+State 59
+
+   48 functioninvocation: identifier • "(" argumentlist ")"
+   49                   | identifier • "(" ")"
+   51 postfixexpression: identifier •
+   76 assignment: identifier • "=" assignmentexpression
+
+    "="  shift, and go to state 75
+    "("  shift, and go to state 76
+
+    "="       [reduce using rule 51 (postfixexpression)]
+    $default  reduce using rule 51 (postfixexpression)
+
+
+State 60
+
+   50 postfixexpression: primary •
+
+    $default  reduce using rule 50 (postfixexpression)
+
+
+State 61
+
+   45 primary: functioninvocation •
+
+    $default  reduce using rule 45 (primary)
+
+
+State 62
+
+   54 unaryexpression: postfixexpression •
+
+    $default  reduce using rule 54 (unaryexpression)
+
+
+State 63
+
+   55 multiplicativeexpression: unaryexpression •
+
+    $default  reduce using rule 55 (multiplicativeexpression)
+
+
+State 64
+
+   56 multiplicativeexpression: multiplicativeexpression • "*" unaryexpression
+   57                         | multiplicativeexpression • "/" unaryexpression
+   58                         | multiplicativeexpression • "%" unaryexpression
+   59 additiveexpression: multiplicativeexpression •
+
+    "/"  shift, and go to state 89
+    "*"  shift, and go to state 90
+    "%"  shift, and go to state 91
+
+    $default  reduce using rule 59 (additiveexpression)
+
+
+State 65
+
+   60 additiveexpression: additiveexpression • "+" multiplicativeexpression
+   61                   | additiveexpression • '-' multiplicativeexpression
+   62 relationalexpression: additiveexpression •
+
+    "+"  shift, and go to state 92
+    '-'  shift, and go to state 93
+
+    $default  reduce using rule 62 (relationalexpression)
+
+
+State 66
+
+   63 relationalexpression: relationalexpression • "<" additiveexpression
+   64                     | relationalexpression • ">" additiveexpression
+   65                     | relationalexpression • ">+" additiveexpression
+   66                     | relationalexpression • "<=" additiveexpression
+   67 equalityexpression: relationalexpression •
+
+    ">"   shift, and go to state 94
+    "<"   shift, and go to state 95
+    "<="  shift, and go to state 96
+    ">+"  shift, and go to state 97
+
+    $default  reduce using rule 67 (equalityexpression)
+
+
+State 67
+
+   68 equalityexpression: equalityexpression • "=" relationalexpression
+   69                   | equalityexpression • "!=" relationalexpression
+   70 conditionalandexpression: equalityexpression •
+
+    "="   shift, and go to state 98
+    "!="  shift, and go to state 99
+
+    $default  reduce using rule 70 (conditionalandexpression)
+
+
+State 68
+
+   71 conditionalandexpression: conditionalandexpression • "&&" equalityexpression
+   72 conditionalorexpression: conditionalandexpression •
+
+    "&&"  shift, and go to state 100
+
+    $default  reduce using rule 72 (conditionalorexpression)
+
+
+State 69
+
+   73 conditionalorexpression: conditionalorexpression • "||" conditionalandexpression
+   74 assignmentexpression: conditionalorexpression •
+
+    "||"  shift, and go to state 101
+
+    $default  reduce using rule 74 (assignmentexpression)
+
+
+State 70
+
+   77 expression: assignmentexpression •
+
+    $default  reduce using rule 77 (expression)
+
+
+State 71
+
+   75 assignmentexpression: assignment •
+
+    $default  reduce using rule 75 (assignmentexpression)
+
+
+State 72
+
+   36 statement: "return" expression • ";"
+
+    ";"  shift, and go to state 102
+
+
+State 73
+
+   35 statement: "break" ";" •
+
+    $default  reduce using rule 35 (statement)
+
+
+State 74
+
+   14 variabledeclaration: type identifier • ";"
+
+    ";"  shift, and go to state 26
+
+
+State 75
+
+   76 assignment: identifier "=" • assignmentexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 59
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 65
+    relationalexpression      go to state 66
+    equalityexpression        go to state 67
+    conditionalandexpression  go to state 68
+    conditionalorexpression   go to state 69
+    assignmentexpression      go to state 103
+    assignment                go to state 71
+
+
+State 76
+
+   48 functioninvocation: identifier "(" • argumentlist ")"
+   49                   | identifier "(" • ")"
+
+    "("           shift, and go to state 50
+    ")"           shift, and go to state 104
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 59
+    primary                   go to state 60
+    argumentlist              go to state 105
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 65
+    relationalexpression      go to state 66
+    equalityexpression        go to state 67
+    conditionalandexpression  go to state 68
+    conditionalorexpression   go to state 69
+    assignmentexpression      go to state 70
+    assignment                go to state 71
+    expression                go to state 106
+
+
+State 77
+
+   26 block: "{" blockstatements "}" •
+
+    $default  reduce using rule 26 (block)
+
+
+State 78
+
+   29 blockstatements: blockstatements blockstatement •
+
+    $default  reduce using rule 29 (blockstatements)
+
+
+State 79
+
+   34 statement: statementexpression ";" •
+
+    $default  reduce using rule 34 (statement)
+
+
+State 80
+
+   23 formalparameter: type identifier •
+
+    $default  reduce using rule 23 (formalparameter)
+
+
+State 81
+
+   19 functiondeclarator: identifier "(" formalparameterlist ")" •
+
+    $default  reduce using rule 19 (functiondeclarator)
+
+
+State 82
+
+   22 formalparameterlist: formalparameterlist "," • formalparameter
+
+    "int"      shift, and go to state 1
+    "boolean"  shift, and go to state 2
+
+    type             go to state 45
+    formalparameter  go to state 107
+
+
+State 83
+
+   38 statement: "if" "(" expression • ")" statement
+   39          | "if" "(" expression • ")" statement "else" statement
+
+    ")"  shift, and go to state 108
+
+
+State 84
+
+   40 statement: "while" "(" expression • ")" statement
+
+    ")"  shift, and go to state 109
+
+
+State 85
+
+   44 primary: "(" expression • ")"
+
+    ")"  shift, and go to state 110
+
+
+State 86
+
+   48 functioninvocation: identifier • "(" argumentlist ")"
+   49                   | identifier • "(" ")"
+   51 postfixexpression: identifier •
+
+    "("  shift, and go to state 76
+
+    $default  reduce using rule 51 (postfixexpression)
+
+
+State 87
+
+   53 unaryexpression: "!" unaryexpression •
+
+    $default  reduce using rule 53 (unaryexpression)
+
+
+State 88
+
+   52 unaryexpression: '-' unaryexpression •
+
+    $default  reduce using rule 52 (unaryexpression)
+
+
+State 89
+
+   57 multiplicativeexpression: multiplicativeexpression "/" • unaryexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal             go to state 58
+    identifier          go to state 86
+    primary             go to state 60
+    functioninvocation  go to state 61
+    postfixexpression   go to state 62
+    unaryexpression     go to state 111
+
+
+State 90
+
+   56 multiplicativeexpression: multiplicativeexpression "*" • unaryexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal             go to state 58
+    identifier          go to state 86
+    primary             go to state 60
+    functioninvocation  go to state 61
+    postfixexpression   go to state 62
+    unaryexpression     go to state 112
+
+
+State 91
+
+   58 multiplicativeexpression: multiplicativeexpression "%" • unaryexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal             go to state 58
+    identifier          go to state 86
+    primary             go to state 60
+    functioninvocation  go to state 61
+    postfixexpression   go to state 62
+    unaryexpression     go to state 113
+
+
+State 92
+
+   60 additiveexpression: additiveexpression "+" • multiplicativeexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 86
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 114
+
+
+State 93
+
+   61 additiveexpression: additiveexpression '-' • multiplicativeexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 86
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 115
+
+
+State 94
+
+   64 relationalexpression: relationalexpression ">" • additiveexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 86
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 116
+
+
+State 95
+
+   63 relationalexpression: relationalexpression "<" • additiveexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 86
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 117
+
+
+State 96
+
+   66 relationalexpression: relationalexpression "<=" • additiveexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 86
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 118
+
+
+State 97
+
+   65 relationalexpression: relationalexpression ">+" • additiveexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 86
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 119
+
+
+State 98
+
+   68 equalityexpression: equalityexpression "=" • relationalexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 86
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 65
+    relationalexpression      go to state 120
+
+
+State 99
+
+   69 equalityexpression: equalityexpression "!=" • relationalexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 86
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 65
+    relationalexpression      go to state 121
+
+
+State 100
+
+   71 conditionalandexpression: conditionalandexpression "&&" • equalityexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 86
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 65
+    relationalexpression      go to state 66
+    equalityexpression        go to state 122
+
+
+State 101
+
+   73 conditionalorexpression: conditionalorexpression "||" • conditionalandexpression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 86
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 65
+    relationalexpression      go to state 66
+    equalityexpression        go to state 67
+    conditionalandexpression  go to state 123
+
+
+State 102
+
+   36 statement: "return" expression ";" •
+
+    $default  reduce using rule 36 (statement)
+
+
+State 103
+
+   76 assignment: identifier "=" assignmentexpression •
+
+    $default  reduce using rule 76 (assignment)
+
+
+State 104
+
+   49 functioninvocation: identifier "(" ")" •
+
+    $default  reduce using rule 49 (functioninvocation)
+
+
+State 105
+
+   47 argumentlist: argumentlist • "," expression
+   48 functioninvocation: identifier "(" argumentlist • ")"
+
+    ")"  shift, and go to state 124
+    ","  shift, and go to state 125
+
+
+State 106
+
+   46 argumentlist: expression •
+
+    $default  reduce using rule 46 (argumentlist)
+
+
+State 107
+
+   22 formalparameterlist: formalparameterlist "," formalparameter •
+
+    $default  reduce using rule 22 (formalparameterlist)
+
+
+State 108
+
+   38 statement: "if" "(" expression ")" • statement
+   39          | "if" "(" expression ")" • statement "else" statement
+
+    "{"           shift, and go to state 22
+    ";"           shift, and go to state 29
+    "if"          shift, and go to state 30
+    "while"       shift, and go to state 31
+    "return"      shift, and go to state 32
+    "break"       shift, and go to state 33
+    "identifier"  shift, and go to state 4
+
+    identifier           go to state 36
+    block                go to state 37
+    statement            go to state 126
+    statementexpression  go to state 41
+    functioninvocation   go to state 42
+    assignment           go to state 43
+
+
+State 109
+
+   40 statement: "while" "(" expression ")" • statement
+
+    "{"           shift, and go to state 22
+    ";"           shift, and go to state 29
+    "if"          shift, and go to state 30
+    "while"       shift, and go to state 31
+    "return"      shift, and go to state 32
+    "break"       shift, and go to state 33
+    "identifier"  shift, and go to state 4
+
+    identifier           go to state 36
+    block                go to state 37
+    statement            go to state 127
+    statementexpression  go to state 41
+    functioninvocation   go to state 42
+    assignment           go to state 43
+
+
+State 110
+
+   44 primary: "(" expression ")" •
+
+    $default  reduce using rule 44 (primary)
+
+
+State 111
+
+   57 multiplicativeexpression: multiplicativeexpression "/" unaryexpression •
+
+    $default  reduce using rule 57 (multiplicativeexpression)
+
+
+State 112
+
+   56 multiplicativeexpression: multiplicativeexpression "*" unaryexpression •
+
+    $default  reduce using rule 56 (multiplicativeexpression)
+
+
+State 113
+
+   58 multiplicativeexpression: multiplicativeexpression "%" unaryexpression •
+
+    $default  reduce using rule 58 (multiplicativeexpression)
+
+
+State 114
+
+   56 multiplicativeexpression: multiplicativeexpression • "*" unaryexpression
+   57                         | multiplicativeexpression • "/" unaryexpression
+   58                         | multiplicativeexpression • "%" unaryexpression
+   60 additiveexpression: additiveexpression "+" multiplicativeexpression •
+
+    "/"  shift, and go to state 89
+    "*"  shift, and go to state 90
+    "%"  shift, and go to state 91
+
+    $default  reduce using rule 60 (additiveexpression)
+
+
+State 115
+
+   56 multiplicativeexpression: multiplicativeexpression • "*" unaryexpression
+   57                         | multiplicativeexpression • "/" unaryexpression
+   58                         | multiplicativeexpression • "%" unaryexpression
+   61 additiveexpression: additiveexpression '-' multiplicativeexpression •
+
+    "/"  shift, and go to state 89
+    "*"  shift, and go to state 90
+    "%"  shift, and go to state 91
+
+    $default  reduce using rule 61 (additiveexpression)
+
+
+State 116
+
+   60 additiveexpression: additiveexpression • "+" multiplicativeexpression
+   61                   | additiveexpression • '-' multiplicativeexpression
+   64 relationalexpression: relationalexpression ">" additiveexpression •
+
+    "+"  shift, and go to state 92
+    '-'  shift, and go to state 93
+
+    $default  reduce using rule 64 (relationalexpression)
+
+
+State 117
+
+   60 additiveexpression: additiveexpression • "+" multiplicativeexpression
+   61                   | additiveexpression • '-' multiplicativeexpression
+   63 relationalexpression: relationalexpression "<" additiveexpression •
+
+    "+"  shift, and go to state 92
+    '-'  shift, and go to state 93
+
+    $default  reduce using rule 63 (relationalexpression)
+
+
+State 118
+
+   60 additiveexpression: additiveexpression • "+" multiplicativeexpression
+   61                   | additiveexpression • '-' multiplicativeexpression
+   66 relationalexpression: relationalexpression "<=" additiveexpression •
+
+    "+"  shift, and go to state 92
+    '-'  shift, and go to state 93
+
+    $default  reduce using rule 66 (relationalexpression)
+
+
+State 119
+
+   60 additiveexpression: additiveexpression • "+" multiplicativeexpression
+   61                   | additiveexpression • '-' multiplicativeexpression
+   65 relationalexpression: relationalexpression ">+" additiveexpression •
+
+    "+"  shift, and go to state 92
+    '-'  shift, and go to state 93
+
+    $default  reduce using rule 65 (relationalexpression)
+
+
+State 120
+
+   63 relationalexpression: relationalexpression • "<" additiveexpression
+   64                     | relationalexpression • ">" additiveexpression
+   65                     | relationalexpression • ">+" additiveexpression
+   66                     | relationalexpression • "<=" additiveexpression
+   68 equalityexpression: equalityexpression "=" relationalexpression •
+
+    ">"   shift, and go to state 94
+    "<"   shift, and go to state 95
+    "<="  shift, and go to state 96
+    ">+"  shift, and go to state 97
+
+    $default  reduce using rule 68 (equalityexpression)
+
+
+State 121
+
+   63 relationalexpression: relationalexpression • "<" additiveexpression
+   64                     | relationalexpression • ">" additiveexpression
+   65                     | relationalexpression • ">+" additiveexpression
+   66                     | relationalexpression • "<=" additiveexpression
+   69 equalityexpression: equalityexpression "!=" relationalexpression •
+
+    ">"   shift, and go to state 94
+    "<"   shift, and go to state 95
+    "<="  shift, and go to state 96
+    ">+"  shift, and go to state 97
+
+    $default  reduce using rule 69 (equalityexpression)
+
+
+State 122
+
+   68 equalityexpression: equalityexpression • "=" relationalexpression
+   69                   | equalityexpression • "!=" relationalexpression
+   71 conditionalandexpression: conditionalandexpression "&&" equalityexpression •
+
+    "="   shift, and go to state 98
+    "!="  shift, and go to state 99
+
+    $default  reduce using rule 71 (conditionalandexpression)
+
+
+State 123
+
+   71 conditionalandexpression: conditionalandexpression • "&&" equalityexpression
+   73 conditionalorexpression: conditionalorexpression "||" conditionalandexpression •
+
+    "&&"  shift, and go to state 100
+
+    $default  reduce using rule 73 (conditionalorexpression)
+
+
+State 124
+
+   48 functioninvocation: identifier "(" argumentlist ")" •
+
+    $default  reduce using rule 48 (functioninvocation)
+
+
+State 125
+
+   47 argumentlist: argumentlist "," • expression
+
+    "("           shift, and go to state 50
+    "!"           shift, and go to state 52
+    "true"        shift, and go to state 53
+    "false"       shift, and go to state 54
+    "string"      shift, and go to state 55
+    "identifier"  shift, and go to state 4
+    "number"      shift, and go to state 56
+    '-'           shift, and go to state 57
+
+    literal                   go to state 58
+    identifier                go to state 59
+    primary                   go to state 60
+    functioninvocation        go to state 61
+    postfixexpression         go to state 62
+    unaryexpression           go to state 63
+    multiplicativeexpression  go to state 64
+    additiveexpression        go to state 65
+    relationalexpression      go to state 66
+    equalityexpression        go to state 67
+    conditionalandexpression  go to state 68
+    conditionalorexpression   go to state 69
+    assignmentexpression      go to state 70
+    assignment                go to state 71
+    expression                go to state 128
+
+
+State 126
+
+   38 statement: "if" "(" expression ")" statement •
+   39          | "if" "(" expression ")" statement • "else" statement
+
+    "else"  shift, and go to state 129
+
+    "else"    [reduce using rule 38 (statement)]
+    $default  reduce using rule 38 (statement)
+
+
+State 127
+
+   40 statement: "while" "(" expression ")" statement •
+
+    $default  reduce using rule 40 (statement)
+
+
+State 128
+
+   47 argumentlist: argumentlist "," expression •
+
+    $default  reduce using rule 47 (argumentlist)
+
+
+State 129
+
+   39 statement: "if" "(" expression ")" statement "else" • statement
+
+    "{"           shift, and go to state 22
+    ";"           shift, and go to state 29
+    "if"          shift, and go to state 30
+    "while"       shift, and go to state 31
+    "return"      shift, and go to state 32
+    "break"       shift, and go to state 33
+    "identifier"  shift, and go to state 4
+
+    identifier           go to state 36
+    block                go to state 37
+    statement            go to state 130
+    statementexpression  go to state 41
+    functioninvocation   go to state 42
+    assignment           go to state 43
+
+
+State 130
+
+   39 statement: "if" "(" expression ")" statement "else" statement •
+
+    $default  reduce using rule 39 (statement)

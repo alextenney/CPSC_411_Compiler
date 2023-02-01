@@ -1,0 +1,144 @@
+.text
+.globl main
+main:
+  jal L0
+  li $v0,10
+  syscall
+.data
+G0:
+  # "fib(0) = 0\n"
+  .byte 102 , 105 , 98 , 40 , 48 , 41 , 32 , 61 , 32 , 48 , 10 , 0
+  .align 2
+.text
+.data
+G1:
+  # "fib(1) = 1\n"
+  .byte 102 , 105 , 98 , 40 , 49 , 41 , 32 , 61 , 32 , 49 , 10 , 0
+  .align 2
+.text
+.data
+G2:
+  # "fib("
+  .byte 102 , 105 , 98 , 40 , 0
+  .align 2
+.text
+.data
+G3:
+  # ") = "
+  .byte 41 , 32 , 61 , 32 , 0
+  .align 2
+.text
+.data
+G4:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+char: .space 2
+.text
+Lgetchar: 
+  addi $sp,$sp,-4
+  sw $s0,0($sp)
+  li $v0,8
+  la $a0,char
+  la $a1,2
+  syscall
+  lb $v0,char
+  li $s0,4
+  beq $v0,$s0,Lgetchar_eof
+  li $s0,0
+  beq $v0,$s0,Lgetchar_eof
+Lgetchar_return:
+  lw $s0 0($sp)
+  addi $sp,$sp,4
+  jr $ra 
+Lgetchar_eof:
+  li $v0,-1
+  j Lgetchar_return
+Lprints: 
+  li $v0,4
+  syscall
+  jr $ra 
+Lprinti: 
+  li $v0,1
+  syscall
+  jr $ra 
+.data
+return_err: .asciiz "Runtime error: Function did not return\n"
+divzero_err: .asciiz "Runtime error: Division by zero\n"
+.text
+Lhalt: 
+  li $v0,10
+  syscall
+  jr $ra 
+Lprintb: 
+  li $v0,1
+  syscall
+  jr $ra 
+Lprintc: 
+  li $v0,11
+  syscall
+  jr $ra 
+L0: # main
+  addi $sp,$sp,-20
+  sw $ra,0($sp)
+  li $s7,2
+L1: # =
+  sw $s7,4($sp)
+  li $s7,1
+L2: # =
+  sw $s7,12($sp)
+  li $s7,0
+L3: # =
+  sw $s7,16($sp)
+  la $a0,G0
+  jal Lprints
+  la $a0,G1
+  jal Lprints
+L4: # while start
+  li $s7,47
+L6: # <
+  lw $s5,4($sp)
+  blt $s5,$s7,L7
+  li $s6,0
+  j L8
+L7:
+  li $s6,1
+L8:
+  beq $s6,$zero,L5
+  la $a0,G2
+  jal Lprints
+  lw $s7,4($sp)
+  move $a0,$s7
+  jal Lprinti
+  la $a0,G3
+  jal Lprints
+L9: # +
+  lw $s5,12($sp)
+  lw $s4,16($sp)
+  addu $s7,$s5,$s4
+L10: # =
+  sw $s7,8($sp)
+  lw $s7,8($sp)
+  move $a0,$s7
+  jal Lprinti
+L11: # =
+  lw $s7,12($sp)
+  sw $s7,16($sp)
+L12: # =
+  lw $s7,8($sp)
+  sw $s7,12($sp)
+  la $a0,G4
+  jal Lprints
+  li $s7,1
+L13: # +
+  lw $s5,4($sp)
+  addu $s4,$s5,$s7
+L14: # =
+  sw $s4,4($sp)
+j L4
+L5: # while end
+  lw $ra,0($sp) # b
+  addi $sp,$sp,20
+  jr $ra

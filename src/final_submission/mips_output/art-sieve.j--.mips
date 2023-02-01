@@ -1,0 +1,25 @@
+Loaded: /home/profs/aycock/411/sw/share/spim/exceptions.s
+spim: (parser) syntax error on line 1331 of file art-sieve.j--.out
+	  Too complex - not enough free registers in main scope
+	      ^
+The following symbols are undefined:
+L32
+L39
+L46
+L102
+L109
+L53
+L60
+L67
+L74
+L81
+L88
+L5
+L95
+L11
+L18
+L25
+
+Instruction references undefined symbol at 0x004000e4
+  [0x004000e4]	0x12c00000  beq $22, $0, 0 [L5-0x004000e4]  ; 1087: beq $s6,$zero,L5
+

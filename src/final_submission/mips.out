@@ -1,0 +1,79 @@
+.text
+.globl main
+main:
+  jal L0
+  li $v0,10
+  syscall
+.data
+char: .space 2
+.text
+Lgetchar: 
+  li $v0,8
+  la $a0,char
+  la $a1,2
+  syscall
+  lb $v0,char
+  jr $ra 
+Lprints: 
+  li $v0,4
+  syscall
+  jr $ra 
+Lprinti: 
+  li $v0,1
+  syscall
+  jr $ra 
+.data
+return_err: .asciiz "Runtime error: Function did not return\n"
+.text
+Lhalt: 
+  li $v0,10
+  syscall
+  jr $ra 
+Lprintb: 
+  li $v0,1
+  syscall
+  jr $ra 
+Lprintc: 
+  li $v0,11
+  syscall
+  jr $ra 
+L0: # main
+  addi $sp,$sp,-8
+  sw $ra,0($sp)
+L1: # while start
+  jal Lgetchar
+    # Allocated reg: $s7
+  move $s7,$v0
+L3: # =
+  sw $s7,4($sp)
+    # Deallocated reg: $s7
+    # Allocated reg: $s7
+  li $s7,1
+L4: # -
+    # Allocated reg: $s6
+  negu $s6,$s7
+    # Deallocated reg: $s7
+L5: # !=
+    # Allocated reg: $s7
+    # Allocated reg: $s5
+  lw $s5,4($sp)
+  bne $s5,$s6,L6
+  li $s7,0
+  j L7
+L6:
+  li $s7,1
+L7:
+    # Deallocated reg: $s5
+    # Deallocated reg: $s6
+  beq $s7,$zero,L2
+    # Allocated reg: $s6
+  lw $s6,4($sp)
+  move $a0,$s6
+    # Deallocated reg: $s6
+  jal Lprintc
+j L1
+L2: # while end
+    # Deallocated reg: $s7
+  lw $ra,0($sp) # b
+  addi $sp,$sp,8
+  jr $ra

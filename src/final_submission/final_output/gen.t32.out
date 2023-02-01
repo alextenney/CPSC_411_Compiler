@@ -1,0 +1,150 @@
+.text
+.globl main
+main:
+  jal L0
+  li $v0,10
+  syscall
+.data
+G0:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G1:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+char: .space 2
+.text
+Lgetchar: 
+  addi $sp,$sp,-4
+  sw $s0,0($sp)
+  li $v0,8
+  la $a0,char
+  la $a1,2
+  syscall
+  lb $v0,char
+  li $s0,4
+  beq $v0,$s0,Lgetchar_eof
+  li $s0,0
+  beq $v0,$s0,Lgetchar_eof
+Lgetchar_return:
+  lw $s0 0($sp)
+  addi $sp,$sp,4
+  jr $ra 
+Lgetchar_eof:
+  li $v0,-1
+  j Lgetchar_return
+Lprints: 
+  li $v0,4
+  syscall
+  jr $ra 
+Lprinti: 
+  li $v0,1
+  syscall
+  jr $ra 
+.data
+return_err: .asciiz "Runtime error: Function did not return\n"
+divzero_err: .asciiz "Runtime error: Division by zero\n"
+.text
+Lhalt: 
+  li $v0,10
+  syscall
+  jr $ra 
+Lprintb: 
+  li $v0,1
+  syscall
+  jr $ra 
+Lprintc: 
+  li $v0,11
+  syscall
+  jr $ra 
+L0: # main
+  addi $sp,$sp,-12
+  sw $ra,0($sp)
+  li $s7,0
+L1: # =
+  sw $s7,4($sp)
+L2: # while start
+  li $s7,10
+L4: # <
+  lw $s5,4($sp)
+  blt $s5,$s7,L5
+  li $s6,0
+  j L6
+L5:
+  li $s6,1
+L6:
+  beq $s6,$zero,L3
+  lw $s7,4($sp)
+  move $a0,$s7
+  jal Lprinti
+  la $a0,G1
+  jal Lprints
+  li $s7,100
+L7: # =
+  sw $s7,8($sp)
+L8: # while start
+  li $s7,110
+L10: # <
+  lw $s4,8($sp)
+  blt $s4,$s7,L11
+  li $s5,0
+  j L12
+L11:
+  li $s5,1
+L12:
+  beq $s5,$zero,L9
+  lw $s7,8($sp)
+  move $a0,$s7
+  jal Lprinti
+  la $a0,G1
+  jal Lprints
+L13: # if start
+  li $s7,105
+L15: # ==
+  lw $s3,8($sp)
+  beq $s3,$s7,L16
+  li $s4,0
+  j L17
+L16:
+  li $s4,1
+L17:
+  beq $s4,$zero,L14
+j L9
+L14: #if end
+  li $s4,1
+L18: # +
+  lw $s3,8($sp)
+  addu $s7,$s3,$s4
+L19: # =
+  sw $s7,8($sp)
+j L8
+L9: # while end
+L20: # if start
+  li $s5,5
+L22: # ==
+  lw $s4,4($sp)
+  beq $s4,$s5,L23
+  li $s7,0
+  j L24
+L23:
+  li $s7,1
+L24:
+  beq $s7,$zero,L21
+j L3
+L21: #if end
+  li $s7,1
+L25: # +
+  lw $s4,4($sp)
+  addu $s5,$s4,$s7
+L26: # =
+  sw $s5,4($sp)
+j L2
+L3: # while end
+  lw $ra,0($sp) # b
+  addi $sp,$sp,12
+  jr $ra

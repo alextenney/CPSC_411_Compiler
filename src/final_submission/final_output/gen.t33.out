@@ -1,0 +1,80 @@
+.text
+.globl main
+main:
+  jal L0
+  li $v0,10
+  syscall
+.data
+char: .space 2
+.text
+Lgetchar: 
+  addi $sp,$sp,-4
+  sw $s0,0($sp)
+  li $v0,8
+  la $a0,char
+  la $a1,2
+  syscall
+  lb $v0,char
+  li $s0,4
+  beq $v0,$s0,Lgetchar_eof
+  li $s0,0
+  beq $v0,$s0,Lgetchar_eof
+Lgetchar_return:
+  lw $s0 0($sp)
+  addi $sp,$sp,4
+  jr $ra 
+Lgetchar_eof:
+  li $v0,-1
+  j Lgetchar_return
+Lprints: 
+  li $v0,4
+  syscall
+  jr $ra 
+Lprinti: 
+  li $v0,1
+  syscall
+  jr $ra 
+.data
+return_err: .asciiz "Runtime error: Function did not return\n"
+divzero_err: .asciiz "Runtime error: Division by zero\n"
+.text
+Lhalt: 
+  li $v0,10
+  syscall
+  jr $ra 
+Lprintb: 
+  li $v0,1
+  syscall
+  jr $ra 
+Lprintc: 
+  li $v0,11
+  syscall
+  jr $ra 
+L0: # main
+  addi $sp,$sp,-8
+  sw $ra,0($sp)
+L1: # while start
+  jal Lgetchar
+  move $s7,$v0
+L3: # =
+  sw $s7,4($sp)
+  li $s7,1
+L4: # -
+  negu $s6,$s7
+L5: # !=
+  lw $s5,4($sp)
+  bne $s5,$s6,L6
+  li $s7,0
+  j L7
+L6:
+  li $s7,1
+L7:
+  beq $s7,$zero,L2
+  lw $s6,4($sp)
+  move $a0,$s6
+  jal Lprintc
+j L1
+L2: # while end
+  lw $ra,0($sp) # b
+  addi $sp,$sp,8
+  jr $ra

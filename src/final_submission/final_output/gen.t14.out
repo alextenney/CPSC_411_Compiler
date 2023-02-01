@@ -1,0 +1,133 @@
+.text
+.globl main
+main:
+  jal L0
+  li $v0,10
+  syscall
+.data
+G0:
+  # "minint is "
+  .byte 109 , 105 , 110 , 105 , 110 , 116 , 32 , 105 , 115 , 32 , 0
+  .align 2
+.text
+.data
+G1:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+char: .space 2
+.text
+Lgetchar: 
+  addi $sp,$sp,-4
+  sw $s0,0($sp)
+  li $v0,8
+  la $a0,char
+  la $a1,2
+  syscall
+  lb $v0,char
+  li $s0,4
+  beq $v0,$s0,Lgetchar_eof
+  li $s0,0
+  beq $v0,$s0,Lgetchar_eof
+Lgetchar_return:
+  lw $s0 0($sp)
+  addi $sp,$sp,4
+  jr $ra 
+Lgetchar_eof:
+  li $v0,-1
+  j Lgetchar_return
+Lprints: 
+  li $v0,4
+  syscall
+  jr $ra 
+Lprinti: 
+  li $v0,1
+  syscall
+  jr $ra 
+.data
+return_err: .asciiz "Runtime error: Function did not return\n"
+divzero_err: .asciiz "Runtime error: Division by zero\n"
+.text
+Lhalt: 
+  li $v0,10
+  syscall
+  jr $ra 
+Lprintb: 
+  li $v0,1
+  syscall
+  jr $ra 
+Lprintc: 
+  li $v0,11
+  syscall
+  jr $ra 
+L0: # main
+  addi $sp,$sp,-12
+  sw $ra,0($sp)
+  li $s7,0
+L1: # =
+  sw $s7,4($sp)
+  li $s7,1000000
+L2: # =
+  sw $s7,8($sp)
+L3: # while start
+L5: # -
+  lw $s6,4($sp)
+  lw $s5,8($sp)
+  subu $s7,$s6,$s5
+L6: # >
+  lw $s6,4($sp)
+  bgt $s6,$s7,L7
+  li $s5,0
+  j L8
+L7:
+  li $s5,1
+L8:
+  beq $s5,$zero,L4
+L9: # +
+  lw $s6,4($sp)
+  lw $s4,8($sp)
+  addu $s7,$s6,$s4
+L10: # =
+  sw $s7,4($sp)
+j L3
+L4: # while end
+L11: # -
+  lw $s7,4($sp)
+  lw $s4,8($sp)
+  subu $s5,$s7,$s4
+L12: # =
+  sw $s5,4($sp)
+L13: # while start
+  li $s5,1
+L15: # -
+  lw $s7,4($sp)
+  subu $s4,$s7,$s5
+L16: # >
+  lw $s7,4($sp)
+  bgt $s7,$s4,L17
+  li $s5,0
+  j L18
+L17:
+  li $s5,1
+L18:
+  beq $s5,$zero,L14
+  li $s4,1
+L19: # +
+  lw $s6,4($sp)
+  addu $s7,$s6,$s4
+L20: # =
+  sw $s7,4($sp)
+j L13
+L14: # while end
+  la $a0,G0
+  jal Lprints
+  lw $s5,4($sp)
+  move $a0,$s5
+  jal Lprinti
+  la $a0,G1
+  jal Lprints
+  lw $ra,0($sp) # b
+  addi $sp,$sp,12
+  jr $ra

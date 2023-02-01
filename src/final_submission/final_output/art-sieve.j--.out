@@ -1,0 +1,1331 @@
+.text
+.globl main
+main:
+  jal L0
+  li $v0,10
+  syscall
+.data
+G0:
+   .word 0
+.text
+.data
+G1:
+   .word 0
+.text
+.data
+G2:
+   .word 0
+.text
+.data
+G3:
+   .word 0
+.text
+.data
+G4:
+   .word 0
+.text
+.data
+G5:
+   .word 0
+.text
+.data
+G6:
+   .word 0
+.text
+.data
+G7:
+   .word 0
+.text
+.data
+G8:
+   .word 0
+.text
+.data
+G9:
+   .word 0
+.text
+.data
+G10:
+   .word 0
+.text
+.data
+G11:
+   .word 0
+.text
+.data
+G12:
+   .word 0
+.text
+.data
+G13:
+   .word 0
+.text
+.data
+G14:
+   .word 0
+.text
+.data
+G15:
+   .word 0
+.text
+.data
+G16:
+   .word 0
+.text
+.data
+G17:
+   .word 0
+.text
+.data
+G18:
+   .word 0
+.text
+.data
+G19:
+   .word 0
+.text
+.data
+G20:
+   .word 0
+.text
+.data
+G21:
+   .word 0
+.text
+.data
+G22:
+   .word 0
+.text
+.data
+G23:
+   .word 0
+.text
+.data
+G24:
+   .word 0
+.text
+.data
+G25:
+   .word 0
+.text
+.data
+G26:
+   .word 0
+.text
+.data
+G27:
+   .word 0
+.text
+.data
+G28:
+   .word 0
+.text
+.data
+G29:
+   .word 0
+.text
+.data
+G30:
+   .word 0
+.text
+.data
+G31:
+   .word 0
+.text
+.data
+G32:
+   .word 0
+.text
+.data
+G33:
+   .word 0
+.text
+.data
+G34:
+   .word 0
+.text
+.data
+G35:
+   .word 0
+.text
+.data
+G36:
+   .word 0
+.text
+.data
+G37:
+   .word 0
+.text
+.data
+G38:
+   .word 0
+.text
+.data
+G39:
+   .word 0
+.text
+.data
+G40:
+   .word 0
+.text
+.data
+G41:
+   .word 0
+.text
+.data
+G42:
+   .word 0
+.text
+.data
+G43:
+   .word 0
+.text
+.data
+G44:
+   .word 0
+.text
+.data
+G45:
+   .word 0
+.text
+.data
+G46:
+   .word 0
+.text
+.data
+G47:
+   .word 0
+.text
+.data
+G48:
+   .word 0
+.text
+.data
+G49:
+   .word 0
+.text
+.data
+G50:
+   .word 0
+.text
+.data
+G51:
+   .word 0
+.text
+.data
+G52:
+   .word 0
+.text
+.data
+G53:
+   .word 0
+.text
+.data
+G54:
+   .word 0
+.text
+.data
+G55:
+   .word 0
+.text
+.data
+G56:
+   .word 0
+.text
+.data
+G57:
+   .word 0
+.text
+.data
+G58:
+   .word 0
+.text
+.data
+G59:
+   .word 0
+.text
+.data
+G60:
+   .word 0
+.text
+.data
+G61:
+   .word 0
+.text
+.data
+G62:
+   .word 0
+.text
+.data
+G63:
+   .word 0
+.text
+.data
+G64:
+   .word 0
+.text
+.data
+G65:
+   .word 0
+.text
+.data
+G66:
+   .word 0
+.text
+.data
+G67:
+   .word 0
+.text
+.data
+G68:
+   .word 0
+.text
+.data
+G69:
+   .word 0
+.text
+.data
+G70:
+   .word 0
+.text
+.data
+G71:
+   .word 0
+.text
+.data
+G72:
+   .word 0
+.text
+.data
+G73:
+   .word 0
+.text
+.data
+G74:
+   .word 0
+.text
+.data
+G75:
+   .word 0
+.text
+.data
+G76:
+   .word 0
+.text
+.data
+G77:
+   .word 0
+.text
+.data
+G78:
+   .word 0
+.text
+.data
+G79:
+   .word 0
+.text
+.data
+G80:
+   .word 0
+.text
+.data
+G81:
+   .word 0
+.text
+.data
+G82:
+   .word 0
+.text
+.data
+G83:
+   .word 0
+.text
+.data
+G84:
+   .word 0
+.text
+.data
+G85:
+   .word 0
+.text
+.data
+G86:
+   .word 0
+.text
+.data
+G87:
+   .word 0
+.text
+.data
+G88:
+   .word 0
+.text
+.data
+G89:
+   .word 0
+.text
+.data
+G90:
+   .word 0
+.text
+.data
+G91:
+   .word 0
+.text
+.data
+G92:
+   .word 0
+.text
+.data
+G93:
+   .word 0
+.text
+.data
+G94:
+   .word 0
+.text
+.data
+G95:
+   .word 0
+.text
+.data
+G96:
+   .word 0
+.text
+.data
+G97:
+   .word 0
+.text
+.data
+G98:
+   .word 0
+.text
+.data
+G99:
+   .word 0
+.text
+.data
+G100:
+   .word 0
+.text
+.data
+G101:
+   .word 0
+.text
+.data
+G102:
+  # "2\n"
+  .byte 50 , 10 , 0
+  .align 2
+.text
+.data
+G103:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G104:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G105:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G106:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G107:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G108:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G109:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G110:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G111:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G112:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G113:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G114:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G115:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G116:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G117:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G118:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G119:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G120:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G121:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G122:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G123:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G124:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G125:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G126:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G127:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G128:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G129:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G130:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G131:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G132:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G133:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G134:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G135:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G136:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G137:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G138:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G139:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G140:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G141:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G142:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G143:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G144:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G145:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G146:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G147:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G148:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G149:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G150:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G151:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G152:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G153:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G154:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G155:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G156:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G157:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G158:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G159:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G160:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G161:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G162:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G163:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G164:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G165:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G166:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G167:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G168:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G169:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G170:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G171:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G172:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G173:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G174:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G175:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G176:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G177:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G178:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G179:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G180:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G181:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G182:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G183:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G184:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G185:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G186:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G187:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G188:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G189:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G190:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G191:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G192:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G193:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G194:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G195:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G196:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G197:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G198:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G199:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G200:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G201:
+  # " prime numbers <= "
+  .byte 32 , 112 , 114 , 105 , 109 , 101 , 32 , 110 , 117 , 109 , 98 , 101 , 114 , 115 , 32 , 60 , 61 , 32 , 0
+  .align 2
+.text
+.data
+G202:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G203:
+   .word 0
+.text
+.data
+char: .space 2
+.text
+Lgetchar: 
+  addi $sp,$sp,-4
+  sw $s0,0($sp)
+  li $v0,8
+  la $a0,char
+  la $a1,2
+  syscall
+  lb $v0,char
+  li $s0,4
+  beq $v0,$s0,Lgetchar_eof
+  li $s0,0
+  beq $v0,$s0,Lgetchar_eof
+Lgetchar_return:
+  lw $s0 0($sp)
+  addi $sp,$sp,4
+  jr $ra 
+Lgetchar_eof:
+  li $v0,-1
+  j Lgetchar_return
+Lprints: 
+  li $v0,4
+  syscall
+  jr $ra 
+Lprinti: 
+  li $v0,1
+  syscall
+  jr $ra 
+.data
+return_err: .asciiz "Runtime error: Function did not return\n"
+divzero_err: .asciiz "Runtime error: Division by zero\n"
+.text
+Lhalt: 
+  li $v0,10
+  syscall
+  jr $ra 
+Lprintb: 
+  li $v0,1
+  syscall
+  jr $ra 
+Lprintc: 
+  li $v0,11
+  syscall
+  jr $ra 
+L0: # main
+  addi $sp,$sp,-16
+  sw $ra,0($sp)
+  li $s7,1
+L3: # =
+  sw $s7,4($sp)
+L4: # while start
+  li $s7,100
+L6: # <=
+  lw $s5,4($sp)
+  ble $s5,$s7,L7
+  li $s6,0
+  j L8
+L7:
+  li $s6,1
+L8:
+  beq $s6,$zero,L5
+L9: # ifelse start
+  li $s7,1
+L12: # ==
+  lw $s4,4($sp)
+  beq $s4,$s7,L13
+  li $s5,0
+  j L14
+L13:
+  li $s5,1
+L14:
+  beq $s5,$zero,L10
+  li $s7,0
+L15: # =
+  sw $s7,G1
+  j L11
+L10: # ifelse else
+L16: # ifelse start
+  li $s7,2
+L19: # ==
+  lw $s3,4($sp)
+  beq $s3,$s7,L20
+  li $s4,0
+  j L21
+L20:
+  li $s4,1
+L21:
+  beq $s4,$zero,L17
+  li $s7,0
+L22: # =
+  sw $s7,G2
+  j L18
+L17: # ifelse else
+L23: # ifelse start
+  li $s7,3
+L26: # ==
+  lw $s2,4($sp)
+  beq $s2,$s7,L27
+  li $s3,0
+  j L28
+L27:
+  li $s3,1
+L28:
+  beq $s3,$zero,L24
+  li $s7,0
+L29: # =
+  sw $s7,G3
+  j L25
+L24: # ifelse else
+L30: # ifelse start
+  li $s7,4
+L33: # ==
+  lw $s1,4($sp)
+  beq $s1,$s7,L34
+  li $s2,0
+  j L35
+L34:
+  li $s2,1
+L35:
+  beq $s2,$zero,L31
+  li $s7,0
+L36: # =
+  sw $s7,G4
+  j L32
+L31: # ifelse else
+L37: # ifelse start
+  li $s7,5
+L40: # ==
+  lw $s0,4($sp)
+  beq $s0,$s7,L41
+  li $s1,0
+  j L42
+L41:
+  li $s1,1
+L42:
+  beq $s1,$zero,L38
+  li $s7,0
+L43: # =
+  sw $s7,G5
+  j L39
+L38: # ifelse else
+L44: # ifelse start
+  li $s7,6
+L47: # ==
+  lw $t9,4($sp)
+  beq $t9,$s7,L48
+  li $s0,0
+  j L49
+L48:
+  li $s0,1
+L49:
+  beq $s0,$zero,L45
+  li $s7,0
+L50: # =
+  sw $s7,G6
+  j L46
+L45: # ifelse else
+L51: # ifelse start
+  li $s7,7
+L54: # ==
+  lw $t8,4($sp)
+  beq $t8,$s7,L55
+  li $t9,0
+  j L56
+L55:
+  li $t9,1
+L56:
+  beq $t9,$zero,L52
+  li $s7,0
+L57: # =
+  sw $s7,G7
+  j L53
+L52: # ifelse else
+L58: # ifelse start
+  li $s7,8
+L61: # ==
+  lw $t7,4($sp)
+  beq $t7,$s7,L62
+  li $t8,0
+  j L63
+L62:
+  li $t8,1
+L63:
+  beq $t8,$zero,L59
+  li $s7,0
+L64: # =
+  sw $s7,G8
+  j L60
+L59: # ifelse else
+L65: # ifelse start
+  li $s7,9
+L68: # ==
+  lw $t6,4($sp)
+  beq $t6,$s7,L69
+  li $t7,0
+  j L70
+L69:
+  li $t7,1
+L70:
+  beq $t7,$zero,L66
+  li $s7,0
+L71: # =
+  sw $s7,G9
+  j L67
+L66: # ifelse else
+L72: # ifelse start
+  li $s7,10
+L75: # ==
+  lw $t5,4($sp)
+  beq $t5,$s7,L76
+  li $t6,0
+  j L77
+L76:
+  li $t6,1
+L77:
+  beq $t6,$zero,L73
+  li $s7,0
+L78: # =
+  sw $s7,G10
+  j L74
+L73: # ifelse else
+L79: # ifelse start
+  li $s7,11
+L82: # ==
+  lw $t4,4($sp)
+  beq $t4,$s7,L83
+  li $t5,0
+  j L84
+L83:
+  li $t5,1
+L84:
+  beq $t5,$zero,L80
+  li $s7,0
+L85: # =
+  sw $s7,G11
+  j L81
+L80: # ifelse else
+L86: # ifelse start
+  li $s7,12
+L89: # ==
+  lw $t3,4($sp)
+  beq $t3,$s7,L90
+  li $t4,0
+  j L91
+L90:
+  li $t4,1
+L91:
+  beq $t4,$zero,L87
+  li $s7,0
+L92: # =
+  sw $s7,G12
+  j L88
+L87: # ifelse else
+L93: # ifelse start
+  li $s7,13
+L96: # ==
+  lw $t2,4($sp)
+  beq $t2,$s7,L97
+  li $t3,0
+  j L98
+L97:
+  li $t3,1
+L98:
+  beq $t3,$zero,L94
+  li $s7,0
+L99: # =
+  sw $s7,G13
+  j L95
+L94: # ifelse else
+L100: # ifelse start
+  li $s7,14
+L103: # ==
+  lw $t1,4($sp)
+  beq $t1,$s7,L104
+  li $t2,0
+  j L105
+L104:
+  li $t2,1
+L105:
+  beq $t2,$zero,L101
+  li $s7,0
+L106: # =
+  sw $s7,G14
+  j L102
+L101: # ifelse else
+L107: # ifelse start
+  li $s7,15
+L110: # ==
+  lw $t0,4($sp)
+  beq $t0,$s7,L111
+  li $t1,0
+  j L112
+L111:
+  li $t1,1
+L112:
+  beq $t1,$zero,L108
+  li $s7,0
+L113: # =
+  sw $s7,G15
+  j L109
+L108: # ifelse else
+L114: # ifelse start
+  li $s7,16
+L117: # ==
+Too complex - not enough free registers in main scope

@@ -1,0 +1,3 @@
+- still doesnt accept multiple argumentlist
+- wrong order for programs with variable delaration and if statementexpression
+- needs function call

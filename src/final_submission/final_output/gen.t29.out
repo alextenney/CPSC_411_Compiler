@@ -1,0 +1,741 @@
+.text
+.globl main
+main:
+  jal L0
+  li $v0,10
+  syscall
+.data
+G0:
+   .word 0
+.text
+.data
+G1:
+   .word 0
+.text
+.data
+G2:
+   .word 0
+.text
+.data
+G3:
+  # "evaluated A\n"
+  .byte 101 , 118 , 97 , 108 , 117 , 97 , 116 , 101 , 100 , 32 , 65 , 10 , 0
+  .align 2
+.text
+.data
+G4:
+  # "evaluated B\n"
+  .byte 101 , 118 , 97 , 108 , 117 , 97 , 116 , 101 , 100 , 32 , 66 , 10 , 0
+  .align 2
+.text
+.data
+G5:
+  # "evaluated C\n"
+  .byte 101 , 118 , 97 , 108 , 117 , 97 , 116 , 101 , 100 , 32 , 67 , 10 , 0
+  .align 2
+.text
+.data
+G6:
+  # "if ((A && B) || C) {...} else {...}, with A="
+  .byte 105 , 102 , 32 , 40 , 40 , 65 , 32 , 38 , 38 , 32 , 66 , 41 , 32 , 124 , 124 , 32 , 67 , 41 , 32 , 123 , 46 , 46 , 46 , 125 , 32 , 101 , 108 , 115 , 101 , 32 , 123 , 46 , 46 , 46 , 125 , 44 , 32 , 119 , 105 , 116 , 104 , 32 , 65 , 61 , 0
+  .align 2
+.text
+.data
+G7:
+  # " B="
+  .byte 32 , 66 , 61 , 0
+  .align 2
+.text
+.data
+G8:
+  # " C="
+  .byte 32 , 67 , 61 , 0
+  .align 2
+.text
+.data
+G9:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G10:
+  # "if-part executed\n"
+  .byte 105 , 102 , 45 , 112 , 97 , 114 , 116 , 32 , 101 , 120 , 101 , 99 , 117 , 116 , 101 , 100 , 10 , 0
+  .align 2
+.text
+.data
+G11:
+  # "else-part executed\n"
+  .byte 101 , 108 , 115 , 101 , 45 , 112 , 97 , 114 , 116 , 32 , 101 , 120 , 101 , 99 , 117 , 116 , 101 , 100 , 10 , 0
+  .align 2
+.text
+.data
+G12:
+  # "x = (A && !B) || C, with A="
+  .byte 120 , 32 , 61 , 32 , 40 , 65 , 32 , 38 , 38 , 32 , 33 , 66 , 41 , 32 , 124 , 124 , 32 , 67 , 44 , 32 , 119 , 105 , 116 , 104 , 32 , 65 , 61 , 0
+  .align 2
+.text
+.data
+G13:
+  # " B="
+  .byte 32 , 66 , 61 , 0
+  .align 2
+.text
+.data
+G14:
+  # " C="
+  .byte 32 , 67 , 61 , 0
+  .align 2
+.text
+.data
+G15:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G16:
+  # "x="
+  .byte 120 , 61 , 0
+  .align 2
+.text
+.data
+G17:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G18:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G19:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G20:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G21:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G22:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G23:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G24:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G25:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G26:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G27:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G28:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G29:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G30:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G31:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+G32:
+  # "\n"
+  .byte 10 , 0
+  .align 2
+.text
+.data
+char: .space 2
+.text
+Lgetchar: 
+  addi $sp,$sp,-4
+  sw $s0,0($sp)
+  li $v0,8
+  la $a0,char
+  la $a1,2
+  syscall
+  lb $v0,char
+  li $s0,4
+  beq $v0,$s0,Lgetchar_eof
+  li $s0,0
+  beq $v0,$s0,Lgetchar_eof
+Lgetchar_return:
+  lw $s0 0($sp)
+  addi $sp,$sp,4
+  jr $ra 
+Lgetchar_eof:
+  li $v0,-1
+  j Lgetchar_return
+Lprints: 
+  li $v0,4
+  syscall
+  jr $ra 
+Lprinti: 
+  li $v0,1
+  syscall
+  jr $ra 
+.data
+return_err: .asciiz "Runtime error: Function did not return\n"
+divzero_err: .asciiz "Runtime error: Division by zero\n"
+.text
+Lhalt: 
+  li $v0,10
+  syscall
+  jr $ra 
+Lprintb: 
+  li $v0,1
+  syscall
+  jr $ra 
+Lprintc: 
+  li $v0,11
+  syscall
+  jr $ra 
+L1: # A
+  addi $sp,$sp,-76
+  sw $ra,0($sp)
+  sw $t0,4($sp)
+  sw $t1,8($sp)
+  sw $t2,12($sp)
+  sw $t3,16($sp)
+  sw $t4,20($sp)
+  sw $t5,24($sp)
+  sw $t6,28($sp)
+  sw $t7,32($sp)
+  sw $t8,36($sp)
+  sw $t9,40($sp)
+  sw $s0,44($sp)
+  sw $s1,48($sp)
+  sw $s2,52($sp)
+  sw $s3,56($sp)
+  sw $s4,60($sp)
+  sw $s5,64($sp)
+  sw $s6,68($sp)
+  sw $s7,72($sp)
+  la $a0,G3
+  jal Lprints
+  lw $s7,G0
+  move $v0,$s7
+  j L1CLEANUP
+  la $a0,return_err
+  jal Lprints
+  jal Lhalt
+L1CLEANUP: # A return
+  lw $t0,4($sp)
+  lw $t1,8($sp)
+  lw $t2,12($sp)
+  lw $t3,16($sp)
+  lw $t4,20($sp)
+  lw $t5,24($sp)
+  lw $t6,28($sp)
+  lw $t7,32($sp)
+  lw $t8,36($sp)
+  lw $t9,40($sp)
+  lw $s0,44($sp)
+  lw $s1,48($sp)
+  lw $s2,52($sp)
+  lw $s3,56($sp)
+  lw $s4,60($sp)
+  lw $s5,64($sp)
+  lw $s6,68($sp)
+  lw $s7,72($sp)
+  lw $ra,0($sp) # c
+  addi $sp,$sp,76
+  jr $ra
+L2: # B
+  addi $sp,$sp,-76
+  sw $ra,0($sp)
+  sw $t0,4($sp)
+  sw $t1,8($sp)
+  sw $t2,12($sp)
+  sw $t3,16($sp)
+  sw $t4,20($sp)
+  sw $t5,24($sp)
+  sw $t6,28($sp)
+  sw $t7,32($sp)
+  sw $t8,36($sp)
+  sw $t9,40($sp)
+  sw $s0,44($sp)
+  sw $s1,48($sp)
+  sw $s2,52($sp)
+  sw $s3,56($sp)
+  sw $s4,60($sp)
+  sw $s5,64($sp)
+  sw $s6,68($sp)
+  sw $s7,72($sp)
+  la $a0,G4
+  jal Lprints
+  lw $s7,G1
+  move $v0,$s7
+  j L2CLEANUP
+  la $a0,return_err
+  jal Lprints
+  jal Lhalt
+L2CLEANUP: # B return
+  lw $t0,4($sp)
+  lw $t1,8($sp)
+  lw $t2,12($sp)
+  lw $t3,16($sp)
+  lw $t4,20($sp)
+  lw $t5,24($sp)
+  lw $t6,28($sp)
+  lw $t7,32($sp)
+  lw $t8,36($sp)
+  lw $t9,40($sp)
+  lw $s0,44($sp)
+  lw $s1,48($sp)
+  lw $s2,52($sp)
+  lw $s3,56($sp)
+  lw $s4,60($sp)
+  lw $s5,64($sp)
+  lw $s6,68($sp)
+  lw $s7,72($sp)
+  lw $ra,0($sp) # c
+  addi $sp,$sp,76
+  jr $ra
+L3: # C
+  addi $sp,$sp,-76
+  sw $ra,0($sp)
+  sw $t0,4($sp)
+  sw $t1,8($sp)
+  sw $t2,12($sp)
+  sw $t3,16($sp)
+  sw $t4,20($sp)
+  sw $t5,24($sp)
+  sw $t6,28($sp)
+  sw $t7,32($sp)
+  sw $t8,36($sp)
+  sw $t9,40($sp)
+  sw $s0,44($sp)
+  sw $s1,48($sp)
+  sw $s2,52($sp)
+  sw $s3,56($sp)
+  sw $s4,60($sp)
+  sw $s5,64($sp)
+  sw $s6,68($sp)
+  sw $s7,72($sp)
+  la $a0,G5
+  jal Lprints
+  lw $s7,G2
+  move $v0,$s7
+  j L3CLEANUP
+  la $a0,return_err
+  jal Lprints
+  jal Lhalt
+L3CLEANUP: # C return
+  lw $t0,4($sp)
+  lw $t1,8($sp)
+  lw $t2,12($sp)
+  lw $t3,16($sp)
+  lw $t4,20($sp)
+  lw $t5,24($sp)
+  lw $t6,28($sp)
+  lw $t7,32($sp)
+  lw $t8,36($sp)
+  lw $t9,40($sp)
+  lw $s0,44($sp)
+  lw $s1,48($sp)
+  lw $s2,52($sp)
+  lw $s3,56($sp)
+  lw $s4,60($sp)
+  lw $s5,64($sp)
+  lw $s6,68($sp)
+  lw $s7,72($sp)
+  lw $ra,0($sp) # c
+  addi $sp,$sp,76
+  jr $ra
+L4: # eval
+  addi $sp,$sp,-88
+  sw $ra,0($sp)
+  sw $a0,4($sp)
+  sw $a1,8($sp)
+  sw $a2,12($sp)
+  sw $t0,16($sp)
+  sw $t1,20($sp)
+  sw $t2,24($sp)
+  sw $t3,28($sp)
+  sw $t4,32($sp)
+  sw $t5,36($sp)
+  sw $t6,40($sp)
+  sw $t7,44($sp)
+  sw $t8,48($sp)
+  sw $t9,52($sp)
+  sw $s0,56($sp)
+  sw $s1,60($sp)
+  sw $s2,64($sp)
+  sw $s3,68($sp)
+  sw $s4,72($sp)
+  sw $s5,76($sp)
+  sw $s6,80($sp)
+  sw $s7,84($sp)
+L6: # =
+  lw $s7,4($sp)
+  sw $s7,G0
+L7: # =
+  lw $s7,8($sp)
+  sw $s7,G1
+L8: # =
+  lw $s7,12($sp)
+  sw $s7,G2
+  la $a0,G6
+  jal Lprints
+  lw $s7,G0
+  move $a0,$s7
+  jal Lprintb
+  la $a0,G13
+  jal Lprints
+  lw $s7,G1
+  move $a0,$s7
+  jal Lprintb
+  la $a0,G14
+  jal Lprints
+  lw $s7,G2
+  move $a0,$s7
+  jal Lprintb
+  la $a0,G32
+  jal Lprints
+L9: # ifelse start
+  jal L1
+  move $s7,$v0
+  li $s6,0
+  beq $s7,$zero,L12
+  jal L2
+  move $s5,$v0
+  beq $s5,$zero,L12
+  li $s6,1
+L12: # && skip
+  li $s4,1
+  bne $s6,$zero,L13
+  jal L3
+  move $s3,$v0
+  bne $s3,$zero,L13
+  li $s4,0
+L13: # || skip
+  beq $s4,$zero,L10
+  la $a0,G10
+  jal Lprints
+  j L11
+L10: # ifelse else
+  la $a0,G11
+  jal Lprints
+L11: #ifelse end
+L4CLEANUP: # eval return
+  lw $t0,16($sp)
+  lw $t1,20($sp)
+  lw $t2,24($sp)
+  lw $t3,28($sp)
+  lw $t4,32($sp)
+  lw $t5,36($sp)
+  lw $t6,40($sp)
+  lw $t7,44($sp)
+  lw $t8,48($sp)
+  lw $t9,52($sp)
+  lw $s0,56($sp)
+  lw $s1,60($sp)
+  lw $s2,64($sp)
+  lw $s3,68($sp)
+  lw $s4,72($sp)
+  lw $s5,76($sp)
+  lw $s6,80($sp)
+  lw $s7,84($sp)
+  lw $ra,0($sp) # c
+  addi $sp,$sp,88
+  jr $ra
+L5: # assign
+  addi $sp,$sp,-92
+  sw $ra,0($sp)
+  sw $a0,4($sp)
+  sw $a1,8($sp)
+  sw $a2,12($sp)
+  sw $t0,20($sp)
+  sw $t1,24($sp)
+  sw $t2,28($sp)
+  sw $t3,32($sp)
+  sw $t4,36($sp)
+  sw $t5,40($sp)
+  sw $t6,44($sp)
+  sw $t7,48($sp)
+  sw $t8,52($sp)
+  sw $t9,56($sp)
+  sw $s0,60($sp)
+  sw $s1,64($sp)
+  sw $s2,68($sp)
+  sw $s3,72($sp)
+  sw $s4,76($sp)
+  sw $s5,80($sp)
+  sw $s6,84($sp)
+  sw $s7,88($sp)
+L14: # =
+  lw $s7,4($sp)
+  sw $s7,G0
+L15: # =
+  lw $s7,8($sp)
+  sw $s7,G1
+L16: # =
+  lw $s7,12($sp)
+  sw $s7,G2
+  la $a0,G12
+  jal Lprints
+  lw $s7,G0
+  move $a0,$s7
+  jal Lprintb
+  la $a0,G13
+  jal Lprints
+  lw $s7,G1
+  move $a0,$s7
+  jal Lprintb
+  la $a0,G14
+  jal Lprints
+  lw $s7,G2
+  move $a0,$s7
+  jal Lprintb
+  la $a0,G32
+  jal Lprints
+  jal L1
+  move $s7,$v0
+  li $s6,0
+  beq $s7,$zero,L17
+  jal L2
+  move $s5,$v0
+L18: # !
+  xori $s4,$s5,1
+  beq $s4,$zero,L17
+  li $s6,1
+L17: # && skip
+  li $s5,1
+  bne $s6,$zero,L19
+  jal L3
+  move $s3,$v0
+  bne $s3,$zero,L19
+  li $s5,0
+L19: # || skip
+L20: # =
+  sw $s5,16($sp)
+  la $a0,G16
+  jal Lprints
+  lw $s5,16($sp)
+  move $a0,$s5
+  jal Lprintb
+  la $a0,G32
+  jal Lprints
+L5CLEANUP: # assign return
+  lw $t0,20($sp)
+  lw $t1,24($sp)
+  lw $t2,28($sp)
+  lw $t3,32($sp)
+  lw $t4,36($sp)
+  lw $t5,40($sp)
+  lw $t6,44($sp)
+  lw $t7,48($sp)
+  lw $t8,52($sp)
+  lw $t9,56($sp)
+  lw $s0,60($sp)
+  lw $s1,64($sp)
+  lw $s2,68($sp)
+  lw $s3,72($sp)
+  lw $s4,76($sp)
+  lw $s5,80($sp)
+  lw $s6,84($sp)
+  lw $s7,88($sp)
+  lw $ra,0($sp) # c
+  addi $sp,$sp,92
+  jr $ra
+L0: # main
+  addi $sp,$sp,-4
+  sw $ra,0($sp)
+  li $s7,0
+  li $s6,0
+  li $s5,0
+  move $a0,$s7
+  move $a1,$s6
+  move $a2,$s5
+  jal L4
+  la $a0,G32
+  jal Lprints
+  li $s5,0
+  li $s6,0
+  li $s7,1
+  move $a0,$s5
+  move $a1,$s6
+  move $a2,$s7
+  jal L4
+  la $a0,G32
+  jal Lprints
+  li $s7,0
+  li $s6,1
+  li $s5,0
+  move $a0,$s7
+  move $a1,$s6
+  move $a2,$s5
+  jal L4
+  la $a0,G32
+  jal Lprints
+  li $s5,0
+  li $s6,1
+  li $s7,1
+  move $a0,$s5
+  move $a1,$s6
+  move $a2,$s7
+  jal L4
+  la $a0,G32
+  jal Lprints
+  li $s7,1
+  li $s6,0
+  li $s5,0
+  move $a0,$s7
+  move $a1,$s6
+  move $a2,$s5
+  jal L4
+  la $a0,G32
+  jal Lprints
+  li $s5,1
+  li $s6,0
+  li $s7,1
+  move $a0,$s5
+  move $a1,$s6
+  move $a2,$s7
+  jal L4
+  la $a0,G32
+  jal Lprints
+  li $s7,1
+  li $s6,1
+  li $s5,0
+  move $a0,$s7
+  move $a1,$s6
+  move $a2,$s5
+  jal L4
+  la $a0,G32
+  jal Lprints
+  li $s5,1
+  li $s6,1
+  li $s7,1
+  move $a0,$s5
+  move $a1,$s6
+  move $a2,$s7
+  jal L4
+  la $a0,G32
+  jal Lprints
+  li $s7,0
+  li $s6,0
+  li $s5,0
+  move $a0,$s7
+  move $a1,$s6
+  move $a2,$s5
+  jal L5
+  la $a0,G32
+  jal Lprints
+  li $s5,0
+  li $s6,0
+  li $s7,1
+  move $a0,$s5
+  move $a1,$s6
+  move $a2,$s7
+  jal L5
+  la $a0,G32
+  jal Lprints
+  li $s7,0
+  li $s6,1
+  li $s5,0
+  move $a0,$s7
+  move $a1,$s6
+  move $a2,$s5
+  jal L5
+  la $a0,G32
+  jal Lprints
+  li $s5,0
+  li $s6,1
+  li $s7,1
+  move $a0,$s5
+  move $a1,$s6
+  move $a2,$s7
+  jal L5
+  la $a0,G32
+  jal Lprints
+  li $s7,1
+  li $s6,0
+  li $s5,0
+  move $a0,$s7
+  move $a1,$s6
+  move $a2,$s5
+  jal L5
+  la $a0,G32
+  jal Lprints
+  li $s5,1
+  li $s6,0
+  li $s7,1
+  move $a0,$s5
+  move $a1,$s6
+  move $a2,$s7
+  jal L5
+  la $a0,G32
+  jal Lprints
+  li $s7,1
+  li $s6,1
+  li $s5,0
+  move $a0,$s7
+  move $a1,$s6
+  move $a2,$s5
+  jal L5
+  la $a0,G32
+  jal Lprints
+  li $s5,1
+  li $s6,1
+  li $s7,1
+  move $a0,$s5
+  move $a1,$s6
+  move $a2,$s7
+  jal L5
+  lw $ra,0($sp) # b
+  addi $sp,$sp,4
+  jr $ra

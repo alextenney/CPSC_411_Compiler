@@ -1,0 +1,129 @@
+.text
+.globl main
+main:
+  jal L0
+  li $v0,10
+  syscall
+.data
+G0:
+   .word 0
+.text
+.data
+char: .space 2
+.text
+Lgetchar: 
+  addi $sp,$sp,-4
+  sw $s0,0($sp)
+  li $v0,8
+  la $a0,char
+  la $a1,2
+  syscall
+  lb $v0,char
+  li $s0,4
+  beq $v0,$s0,Lgetchar_eof
+  li $s0,0
+  beq $v0,$s0,Lgetchar_eof
+Lgetchar_return:
+  lw $s0 0($sp)
+  addi $sp,$sp,4
+  jr $ra 
+Lgetchar_eof:
+  li $v0,-1
+  j Lgetchar_return
+Lprints: 
+  li $v0,4
+  syscall
+  jr $ra 
+Lprinti: 
+  li $v0,1
+  syscall
+  jr $ra 
+.data
+return_err: .asciiz "Runtime error: Function did not return\n"
+divzero_err: .asciiz "Runtime error: Division by zero\n"
+.text
+Lhalt: 
+  li $v0,10
+  syscall
+  jr $ra 
+Lprintb: 
+  li $v0,1
+  syscall
+  jr $ra 
+Lprintc: 
+  li $v0,11
+  syscall
+  jr $ra 
+L1: # reverse
+  addi $sp,$sp,-80
+  sw $ra,0($sp)
+  sw $t0,8($sp)
+  sw $t1,12($sp)
+  sw $t2,16($sp)
+  sw $t3,20($sp)
+  sw $t4,24($sp)
+  sw $t5,28($sp)
+  sw $t6,32($sp)
+  sw $t7,36($sp)
+  sw $t8,40($sp)
+  sw $t9,44($sp)
+  sw $s0,48($sp)
+  sw $s1,52($sp)
+  sw $s2,56($sp)
+  sw $s3,60($sp)
+  sw $s4,64($sp)
+  sw $s5,68($sp)
+  sw $s6,72($sp)
+  sw $s7,76($sp)
+  jal Lgetchar
+  move $s7,$v0
+L2: # =
+  sw $s7,4($sp)
+L3: # if start
+L5: # !=
+  lw $s6,4($sp)
+  lw $s5,G0
+  bne $s6,$s5,L6
+  li $s7,0
+  j L7
+L6:
+  li $s7,1
+L7:
+  beq $s7,$zero,L4
+  jal L1
+  lw $s5,4($sp)
+  move $a0,$s5
+  jal Lprintc
+L4: #if end
+L1CLEANUP: # reverse return
+  lw $t0,8($sp)
+  lw $t1,12($sp)
+  lw $t2,16($sp)
+  lw $t3,20($sp)
+  lw $t4,24($sp)
+  lw $t5,28($sp)
+  lw $t6,32($sp)
+  lw $t7,36($sp)
+  lw $t8,40($sp)
+  lw $t9,44($sp)
+  lw $s0,48($sp)
+  lw $s1,52($sp)
+  lw $s2,56($sp)
+  lw $s3,60($sp)
+  lw $s4,64($sp)
+  lw $s5,68($sp)
+  lw $s6,72($sp)
+  lw $s7,76($sp)
+  lw $ra,0($sp) # c
+  addi $sp,$sp,80
+  jr $ra
+L0: # main
+  addi $sp,$sp,-4
+  sw $ra,0($sp)
+  li $s7,10
+L8: # =
+  sw $s7,G0
+  jal L1
+  lw $ra,0($sp) # b
+  addi $sp,$sp,4
+  jr $ra

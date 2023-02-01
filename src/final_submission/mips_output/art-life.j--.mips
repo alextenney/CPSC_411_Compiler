@@ -1,0 +1,26 @@
+Loaded: /home/profs/aycock/411/sw/share/spim/exceptions.s
+spim: (parser) syntax error on line 2487 of file art-life.j--.out
+	  Too complex - not enough free registers in main scope
+	      ^
+The following symbols are undefined:
+L200
+L321
+L329
+L337
+L107
+L345
+L353
+L361
+L369
+L376
+L3
+L4
+L8
+L292
+L299
+L305
+L14
+L313
+
+Instruction references undefined symbol at 0x004000c8
+  [0x004000c8]	0x0c000000  jal 0x00000000 [L4]             ; 1484: jal L4
